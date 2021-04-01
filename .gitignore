@@ -1,0 +1,6 @@
+bin/
+obj/
+plan/
+PersonalBudget.layout
+PersonalBudget.depend
+PersonalBudget.cbp
