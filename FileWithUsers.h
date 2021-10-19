@@ -3,22 +3,23 @@
 
 #include <vector>
 #include <iostream>
+#include <stdlib.h>
+#include <string>
 
 #include "User.h"
 #include "Markup.h"
 #include "AuxiliaryMethods.h"
+#include "File.h"
 
 using namespace std;
 
-class FileWithUsers
+class FileWithUsers: public File
 {
-    const string nameOfFileWithUsers;
-    User getDataUser(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
+const string NAME_FILE_WITH_USERS;
 
 public:
-   // FileWithUsers(string NAMEOFFILEWITHUSERS) : nameOfFileWithUsers(NAMEOFILEWITHUSERS) {};
-    void addUserToFile(User user);
-    vector <User> loadUsersFromFile ();
-    void saveAllUsersToFile(vector <User> &users);
+     FileWithUsers (string nameFileWithUsers): NAME_FILE_WITH_USERS(nameFileWithUsers){};
+     void addUserToFile(User users);
+     vector <User> loadUsersFromFile();
 };
 #endif

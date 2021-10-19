@@ -1,6 +1,11 @@
 #include "FileWithUsers.h"
 
-void FileWithUsers::addUserToFile(User user)
+/*FileWithUsers::FileWithUsers()
+{
+    nameOfFileWithUsers = "Users.xml";
+}*/
+
+void FileWithUsers::addUserToFile(User users)
 {
     CMarkup xml;
 
@@ -11,36 +16,29 @@ void FileWithUsers::addUserToFile(User user)
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
         xml.IntoElem();
-        xml.AddElem("User");
-        xml.IntoElem();
-        xml.AddElem("UserId", "1");
-        xml.AddElem("Login", user.getLogin());
-        xml.AddElem("Name", user.getName());
-        xml.AddElem ("Surname", user.getSurname());
-        xml.AddElem("Password", user.getPassword());
-        xml.Save("users.xml");
     }
     else
     {
+        xml.Load( "users.xml" );
         xml.FindElem("Users");
         xml.IntoElem();
-        xml.AddElem("User");
-        xml.IntoElem();
-        xml.AddElem("UserId", user.getId());
-        xml.AddElem("Login", user.getLogin());
-        xml.AddElem("Name", user.getName());
-        xml.AddElem ("Surname", user.getSurname());
-        xml.AddElem("Password", user.getPassword());;
-        xml.Save("users.xml");
-
     }
+    xml.AddElem("User");
+    xml.IntoElem();
+    xml.AddElem("UserId",users.getId());
+    xml.AddElem("Login", users.getLogin());
+    xml.AddElem("Name", users.getName());
+    xml.AddElem ("Surname", users.getSurname());
+    xml.AddElem("Password", users.getPassword());
+    xml.Save("users.xml");
 }
 
 vector <User> FileWithUsers::loadUsersFromFile()
 {
     User user;
-    vector <User>users;
+    vector <User> users;
     CMarkup xml;
+
     xml.Load("users.xml");
     xml.FindElem("Users");
     xml.IntoElem();
@@ -48,24 +46,20 @@ vector <User> FileWithUsers::loadUsersFromFile()
     {
         xml.IntoElem();
         xml.FindElem("UserId");
-        string userId= xml.GetData ();
-        user.setId(AuxiliaryMethods::convertStringToInt(userId));
+        user.setId(AuxiliaryMethods::convertStringToInt(xml.GetData ()));
         xml.FindElem("Login");
-        string login =xml.GetData();
-        user.setLogin(login);
+        user.setLogin(xml.GetData());
         xml.FindElem("Name");
-        string name=xml.GetData();
-        user.setName(name);
+        user.setName(xml.GetData());
         xml.FindElem("Surname");
-        string surname =xml.GetData();
-        user.setSurname(surname);
+        user.setSurname(xml.GetData());
         xml.FindElem("Password");
-        string password =xml.GetData();
-        user.setPassword(password);
-        users.push_back(user);
+        user.setPassword(xml.GetData());
+        xml.ResetMainPos();
         xml.OutOfElem();
+        users.push_back(user);
     }
     return users;
-}
+};
 
 

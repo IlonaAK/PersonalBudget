@@ -34,7 +34,7 @@ void PersonalBudget::mainMenu()
         case ('2'):
         {
             cout <<endl<< "LOGOWANIE"<<endl;
-             signupUser();
+            signupUser();
             if (userManager.getIdLoggedinUser()!=0)
                 userMenu();
             break;
@@ -45,78 +45,75 @@ void PersonalBudget::mainMenu()
             userRegistration();
             break;
         }
-
-
         case ('3'):
         {
             exit(0);
-
         }
         default:
             cout <<endl<< "Niepoprawny wyb\242r";
             Sleep(1000);
             break;
         }
-
     }
     while (choice!=3);
 }
 
 void PersonalBudget::viewUserMenu()
 {
-     system("cls");
-                cout<<"    MENU U\275YTKOWNIKA"<<endl;
-                cout<<"******************************"<<endl;
-                cout << "1. Dodaj przych\242d"<<endl;
-                cout << "2. Dodaj wydatek"<<endl;
-                cout << "3. Bilans z bie\276\245cego miesi\245ca"<<endl;
-                cout << "4. Bilans z poprzedniego miesi\245ca"<<endl;
-                cout << "5. Bilans z wybranego miesi\245ca"<<endl;
-                cout << "6. Zmie\344 has\210o" <<endl;
-                cout << "8. Wyloguj si\251" <<endl;
-                cout << "Tw\242j wyb\242r: ";
+    system("cls");
+    cout<<"    MENU U\275YTKOWNIKA"<<endl;
+    cout<<"******************************"<<endl;
+    cout << "1. Dodaj przych\242d"<<endl;
+    cout << "2. Dodaj wydatek"<<endl;
+    cout << "3. Bilans z bie\276\245cego miesi\245ca"<<endl;
+    cout << "4. Bilans z poprzedniego miesi\245ca"<<endl;
+    cout << "5. Bilans z wybranego miesi\245ca"<<endl;
+    cout << "6. Zmie\344 has\210o" <<endl;
+    cout << "8. Wyloguj si\251" <<endl;
+    cout << "Tw\242j wyb\242r: ";
 }
 void PersonalBudget::userMenu()
 {
+    //  balanceManager = new balanceManager(nameOfFiles, userManager.getIdLoggedinUser());
+
     char choice='0';
     do
     {
         viewUserMenu();
-        //personalBudget = new personalBudget();
         choice=AuxiliaryMethods::loadSign();
         switch (choice)
         {
         case ('1'):
         {
-         //   bilansManager->addIncome();
+            //    balanceManager->addIncome();
             break;
 
         }
         case ('2'):
         {
-          //  bilansManager->addExpense();
+            //      balanceManager->addExpense();
             break;
         }
         case ('3'):
         {
-         //   bilansManager->balanceCurrentMonth();
+//            balanceManager->balanceCurrentMonth();
             break;
         }
         case ('4'):
         {
-          //  bilansManager->balancePreviousMonth();
+            //  balanceManager->balancePreviousMonth();
             system("pause");
             break;
         }
-         case ('5'):
+        case ('5'):
         {
-          //  bilansManager->balanceSelectedMonth();
+            //  balanceManager->balanceSelectedMonth();
             system("pause");
             break;
         }
         case ('6'):
         {
-          //  userManager->changePassword();
+            //  userManager->changePassword();
             break;
         }
 
@@ -136,8 +133,9 @@ void PersonalBudget::userMenu()
 }
 
 
-void PersonalBudget::logoutUser(){
+void PersonalBudget::logoutUser()
+{
     userManager.logoutUser();
-//    delete bilansManager;
-//    bilansManager = NULL;
+//    delete balanceManager;
+//    balanceManager = NULL;
 }

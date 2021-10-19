@@ -5,16 +5,18 @@
 #include "UserManager.h"
 #include "AuxiliaryMethods.h"
 #include <windows.h>
-#include "BilansManager.h"
+#include "BalanceManager.h"
+#include "FileWithExpenses.h"
+#include "FileWithIncomes.h"
 
 using namespace std;
 
 class PersonalBudget
 {
     UserManager userManager;
-    BilansManager *bilansManager;
-    //const string nameFileWith;
-
+   // BalanceManager balanceManager;
+    const string NAME_FILE_WITH_EXPENSES;
+    const string NAME_FILE_WITH_INCOMES;
 
     void viewMainMenu();
     void viewUserMenu();
@@ -23,10 +25,17 @@ class PersonalBudget
     void logoutUser();
 
 public:
-    PersonalBudget(MainMenu()) {
-        ;
+    PersonalBudget(string nameFileWithUsers, string nameFileWithIncomes, string nameFileWithExpenses): userManager(nameFileWithUsers), NAME_FILE_WITH_INCOMES(nameFileWithIncomes), NAME_FILE_WITH_EXPENSES(nameFileWithExpenses){
+    //    balanceManager=NULL;
+        mainMenu();
+    };
+
+    ~PersonalBudget(){
+//        delete balanceManager;
+  //      balanceManager = NULL;
     };
     void mainMenu();
     void userMenu();
+
 };
 #endif

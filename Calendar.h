@@ -25,6 +25,8 @@ public:
     int dayFromString(string date);
     int getDays(string date);
     int daysBetweenDates(string firstDate, string endDate);
+    int convertDateToInt(string date);
+    bool checkIfDateIsValid(string date);
 
 };
 #endif

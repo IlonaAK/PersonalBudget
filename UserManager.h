@@ -24,18 +24,20 @@ class UserManager
     FileWithUsers fileWithUsers;
 
 
+
 public:
-/*    UserManager(string nameOfFileWithUsers) : fileWithUsers(nameOfFileWithUsers)
+    UserManager(string nameOfFileWithUsers) : fileWithUsers(nameOfFileWithUsers)
     {
         users=fileWithUsers.loadUsersFromFile();
         idLoggedUser=0;
-    };*/
+    };
 
     void signupUser();
+    void userRegistration();
+    void displayAllUser();
     void changePassword();
     void logoutUser();
     int getIdLoggedinUser();
-    void userRegistration();
     void loadUsersFromFile();
 
 };

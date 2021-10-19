@@ -1,11 +1,12 @@
-#ifndef BILANS_H
-#define BILANS_H
+#ifndef BALANCE_H
+#define BALANCE_H
+
 
 #include <iostream>
 
 using namespace std;
 
-class Bilans
+class Balance
 {
     int amountId;
     int userId;
@@ -14,10 +15,9 @@ class Bilans
     string amount;
 
 public:
-    Bilans();
     void setAmountId (int amountId);
     void setUserId (int userId);
-    void setDate (string date);
+    void setDate (int date);
     void setItem (string item);
     void setAmount (string amount);
 

@@ -19,7 +19,7 @@ User UserManager::giveDataOfNewUser()
     string login;
     do
     {
-        cout  << "Podaj login: ";
+        cout  <<endl<< "Podaj login: ";
         cin>> login;
         user.setLogin(login);
     }
@@ -27,11 +27,11 @@ User UserManager::giveDataOfNewUser()
 
     string name;
 
-    cout<< "Podaj imi\251: "<<endl;
+    cout<< "Podaj imi\251: ";
     cin>>name;
     user.setName(name);
     string surname;
-    cout<<"Podaj nazwisko: "<<endl;
+    cout<<"Podaj nazwisko: ";
     cin>>surname;
     user.setSurname(surname);
     string password;
