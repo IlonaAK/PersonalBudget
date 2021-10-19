@@ -21,4 +21,11 @@
 <Surname>Le</Surname>
 <Password>1234</Password>
 </User>
+<User>
+<UserId>4</UserId>
+<Login>Danio</Login>
+<Name>Damian</Name>
+<Surname>Ra</Surname>
+<Password>123</Password>
+</User>
 </Users>

@@ -1,16 +1,16 @@
 #ifndef EXPENSES_H
 #define EXPENSES_H
-#include "Bilans.h"
+#include "Balance.h"
 
 #include <iostream>
 
 using namespace std;
 
-class Expenses : public Bilans
+class Expenses : public Balance
 {
 
 public:
-    Expenses();
+    Expenses(){};
 };
 
 #endif
