@@ -74,24 +74,24 @@ void PersonalBudget::viewUserMenu()
 }
 void PersonalBudget::userMenu()
 {
-    //  balanceManager = new balanceManager(nameOfFiles, userManager.getIdLoggedinUser());
 
     char choice='0';
     do
     {
         viewUserMenu();
+        balanceManager = new BalanceManager(NAME_FILE_WITH_INCOMES, NAME_FILE_WITH_EXPENSES, userManager.getIdLoggedinUser());
+
         choice=AuxiliaryMethods::loadSign();
         switch (choice)
         {
         case ('1'):
         {
-            //    balanceManager->addIncome();
+            balanceManager->addIncome();
             break;
-
         }
         case ('2'):
         {
-            //      balanceManager->addExpense();
+            balanceManager->addExpense();
             break;
         }
         case ('3'):
@@ -113,7 +113,8 @@ void PersonalBudget::userMenu()
         }
         case ('6'):
         {
-            //  userManager->changePassword();
+            userManager.changePassword();
+            Sleep(1000);
             break;
         }
 
@@ -136,6 +137,6 @@ void PersonalBudget::userMenu()
 void PersonalBudget::logoutUser()
 {
     userManager.logoutUser();
-//    delete balanceManager;
-//    balanceManager = NULL;
+    delete balanceManager;
+    balanceManager = NULL;
 }

@@ -2,118 +2,129 @@
 
 void BalanceManager::addExpense()
 {
-    Balance balance;
+    Expenses expense;
     system("cls");
+    char choice='0';
 
-    Calendar calendar;
-
-    balance.setUserId(ID_LOGGED_USER);
-    balance.setAmountId(getNewAmountId()+1);
-
+    expense.setUserId(ID_LOGGED_USER);
+    expense.setAmountId(getNewExpenseId());
     cout<< "-------Podaj dane wydatku------"<<endl<<endl;
 
-    cout<<"Wybierz dat\251 wydatku: "<<endl;
+    cout<<"Podaj dat\251 wydatku: "<<endl;
     cout<<"1. Dzisiejsza data."<<endl;
-    cout<<"2. Wprowad\253 inn\245 dat\251."<<endl;
+    cout<<"2. Wprowad\253 inn\245 dat\251 (RRRR-MM-DD)."<<endl;
+    Calendar calendar;
 
-    char choice='0';
     choice=AuxiliaryMethods::loadSign();
     switch (choice)
     {
-
     case ('1'):
     {
-        balance.setDate(calendar.convertDateToInt(calendar.loadSystemData()));
+        expense.setDate(calendar.loadSystemData());
+        cout<<"Wydatek zostanie wprowadzony z dzisiejsz\245 dat\245 "<< calendar.loadSystemData()<<endl;
+        break;
     }
     case ('2'):
     {
-       string date;
-       cin>>date;
-       if(calendar.checkIfDateIsValid(date)==true)
-       balance.setDate(calendar.convertDateToInt(date));
-       else
-       {
-        cout<<"Podano niepoprawn\245 dat\251";
-       }
+        cout<<"Podaj dat\251: "<<endl;
+        string date = AuxiliaryMethods::loadLine();
+
+        if(calendar.checkIfDateIsValid(date)==true)
+        {
+            expense.setDate(calendar.convertDateToInt(date));
+        }
+        else
+        {
+            cout<<"Podano niepoprawn\245 dat\251"<<endl<<endl;
+            system("pause");
+        }
         break;
     }
     }
-    cout<<"Podaj kwot\251: "<<endl;
-    string amount;
-    cin>>amount;
-    balance.setAmount(AuxiliaryMethods::changeCommaToDot(amount));
-
     cout<<"Podaj przyczyn\251 wydatku"<<endl;
-    string item;
-    cin>>item;
-    balance.setItem(item);
+    expense.setItem(AuxiliaryMethods::loadLine());
 
-   expenses.push_back(balance);
+    cout<<"Podaj kwot\251: "<<endl;
+    expense.setAmount(AuxiliaryMethods::changeCommaToDot(AuxiliaryMethods::loadLine()));
 
-//    fileWithExpenses.addExpenceToFile(balance);
+    expenses.push_back(expense);
+
+    fileWithExpenses.addExpenseToFile(expense);
     cout << endl << "Wydatek dodany pomy\230lnie" << endl << endl;
     system("pause");
 
 }
 void BalanceManager::addIncome()
 {
-    Balance balance;
+    Incomes income;
     system("cls");
 
     Calendar calendar;
 
-    balance.setUserId(ID_LOGGED_USER);
-    balance.setAmountId(getNewAmountId()+1);
+    income.setUserId(ID_LOGGED_USER);
+    income.setAmountId(getNewIncomeId());
 
     cout<< "-------Podaj dane przychodu------"<<endl<<endl;
 
     cout<<"Wybierz dat\251 przychodu: "<<endl;
     cout<<"1. Dzisiejsza data."<<endl;
-    cout<<"2. Wprowad\253 inn\245 dat\251."<<endl;
+    cout<<"2. Wprowad\253 inn\245 dat\251 (RRRR-MM-DD)."<<endl;
 
     char choice='0';
     choice=AuxiliaryMethods::loadSign();
     switch (choice)
     {
-
     case ('1'):
     {
-        balance.setDate(calendar.convertDateToInt(calendar.loadSystemData()));
+        income.setDate(calendar.loadSystemData());
+        cout<<"Przych\242d zostanie wprowadzony z dzisiejsz\245 dat\245 "<< calendar.loadSystemData()<<endl;
+        break;
     }
     case ('2'):
     {
-       string date;
-       cin>>date;
-       if(calendar.checkIfDateIsValid(date)==true)
-       balance.setDate(calendar.convertDateToInt(date));
-       else
-       {
-        cout<<"Podano niepoprawn\245 dat\251";
-       }
+        cout<<"Podaj dat\251: "<<endl;
+        string date=AuxiliaryMethods::loadLine();
+
+        if(calendar.checkIfDateIsValid(date)==true)
+            income.setDate(calendar.convertDateToInt(date));
+        else
+        {
+            cout<<"Podano niepoprawn\245 dat\251"<<endl<<endl;
+            system("pause");
+            break;
+        }
         break;
     }
     }
-    cout<<"Podaj kwot\251: "<<endl;
-    string amount;
-    cin>>amount;
-    balance.setAmount(AuxiliaryMethods::changeCommaToDot(amount));
-
     cout<<"Podaj \253r\242d\210o przychodu"<<endl;
-    string item;
-    cin>>item;
-    balance.setItem(item);
+    income.setItem(AuxiliaryMethods::loadLine());
 
-    incomes.push_back(balance);
+    cout<<"Podaj kwot\251: "<<endl;
+    income.setAmount(AuxiliaryMethods::changeCommaToDot(AuxiliaryMethods::loadLine()));
 
-//    fileWithIncomes.addIncomeToFile(balance);
+    incomes.push_back(income);
+
+    fileWithIncomes.addIncomeToFile(income);
     cout << endl << "Przych\242d dodany pomy\230lnie" << endl << endl;
     system("pause");
 
+
 }
 
-int BalanceManager::getNewAmountId()
+int BalanceManager::getNewIncomeId()
 {
+    if (incomes.empty() == true)
+        return 1;
+    else
+        return incomes.back().getAmountId() + 1;
+}
 
+int BalanceManager::getNewExpenseId()
+{
+    if (expenses.empty() == true)
+        return 1;
+    else
+        return expenses.back().getAmountId() + 1;
 }
 
 void BalanceManager::balanceCurrentMoth()

@@ -28,4 +28,11 @@
 <Surname>Ra</Surname>
 <Password>123</Password>
 </User>
+<User>
+<UserId>5</UserId>
+<Login>1234</Login>
+<Name>Karol</Name>
+<Surname>K</Surname>
+<Password>1256</Password>
+</User>
 </Users>

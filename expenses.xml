@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Expenses>
+<Expense>
+<UserId>3</UserId>
+<AmountId>1</AmountId>
+<Date>20211013</Date>
+<Item>opony</Item>
+<Amount>1200</Amount>
+</Expense>
+<Expense>
+<UserId>3</UserId>
+<AmountId>2</AmountId>
+<Date>20211018</Date>
+<Item>blacharka</Item>
+<Amount>1400</Amount>
+</Expense>
+<Expense>
+<UserId>3</UserId>
+<AmountId>3</AmountId>
+<Date>20211004</Date>
+<Item>zlobek</Item>
+<Amount>600</Amount>
+</Expense>
+</Expenses>

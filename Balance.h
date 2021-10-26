@@ -3,27 +3,36 @@
 
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 class Balance
 {
-    int amountId;
     int userId;
-    string date;
+    int amountId;
+    int date;
     string item;
     string amount;
 
 public:
-    void setAmountId (int amountId);
+    Balance (int userId=0,int amountId=0, int date=0, string item="", string amount="")
+    {
+        this->userId=userId;
+        this->amountId=amountId;
+        this->date=date;
+        this->item=item;
+        this->amount=amount;
+    };
     void setUserId (int userId);
+    void setAmountId (int amountId);
     void setDate (int date);
     void setItem (string item);
     void setAmount (string amount);
 
-    int getAmountId();
     int getUserId();
-    string getDate();
+    int getAmountId();
+    int getDate();
     string getItem();
     string getAmount();
 };

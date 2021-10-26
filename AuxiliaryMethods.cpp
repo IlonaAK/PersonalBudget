@@ -2,7 +2,12 @@
 
 string AuxiliaryMethods::changeCommaToDot(string amount)
 {
-   return amount.replace(amount.find(","), 1, ".");
+     for (int i=0; i<=amount.length()-1;++i)
+   {
+       if (amount[i]==',')
+        amount [i]='.';
+   }
+   return amount;
 }
 
 string AuxiliaryMethods::convertIntToString(int integer)

@@ -14,7 +14,7 @@ using namespace std;
 class PersonalBudget
 {
     UserManager userManager;
-   // BalanceManager balanceManager;
+    BalanceManager *balanceManager;
     const string NAME_FILE_WITH_EXPENSES;
     const string NAME_FILE_WITH_INCOMES;
 
@@ -25,14 +25,16 @@ class PersonalBudget
     void logoutUser();
 
 public:
-    PersonalBudget(string nameFileWithUsers, string nameFileWithIncomes, string nameFileWithExpenses): userManager(nameFileWithUsers), NAME_FILE_WITH_INCOMES(nameFileWithIncomes), NAME_FILE_WITH_EXPENSES(nameFileWithExpenses){
-    //    balanceManager=NULL;
+    PersonalBudget(string nameFileWithUsers, string nameFileWithIncomes, string nameFileWithExpenses): userManager(nameFileWithUsers), NAME_FILE_WITH_INCOMES(nameFileWithIncomes), NAME_FILE_WITH_EXPENSES(nameFileWithExpenses)
+    {
+        balanceManager=NULL;
         mainMenu();
     };
 
-    ~PersonalBudget(){
-//        delete balanceManager;
-  //      balanceManager = NULL;
+    ~PersonalBudget()
+    {
+        delete balanceManager;
+        balanceManager = NULL;
     };
     void mainMenu();
     void userMenu();

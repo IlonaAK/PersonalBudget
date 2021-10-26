@@ -1,14 +1,14 @@
 #include "Balance.h"
 
-void Balance::setAmountId (int newAmountId)
-{
-    if(newAmountId >= 0)
-    amountId=newAmountId;
-}
 void Balance::setUserId (int newUserId)
 {
     if(newUserId >= 0)
     userId=newUserId;
+}
+void Balance::setAmountId (int newAmountId)
+{
+    if(newAmountId >= 0)
+    amountId=newAmountId;
 }
 
 void Balance::setDate (int newDate)
@@ -24,17 +24,16 @@ void Balance::setAmount (string newAmount)
 {
     amount=newAmount;
 }
-
-int Balance::getAmountId()
-{
-    return amountId;
-}
 int Balance::getUserId()
 {
     return userId;
 }
+int Balance::getAmountId()
+{
+    return amountId;
+}
 
-string Balance::getDate()
+int Balance::getDate()
 {
     return date;
 }

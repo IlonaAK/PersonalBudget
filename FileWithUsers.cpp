@@ -1,10 +1,5 @@
 #include "FileWithUsers.h"
 
-/*FileWithUsers::FileWithUsers()
-{
-    nameOfFileWithUsers = "Users.xml";
-}*/
-
 void FileWithUsers::addUserToFile(User users)
 {
     CMarkup xml;

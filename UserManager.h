@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
-#include<sstream>
+#include <sstream>
 
 
 #include "User.h"
@@ -23,11 +23,8 @@ class UserManager
     bool ifLoginExist(string login);
     FileWithUsers fileWithUsers;
 
-
-
 public:
-    UserManager(string nameOfFileWithUsers) : fileWithUsers(nameOfFileWithUsers)
-    {
+    UserManager(string nameOfFileWithUsers) : fileWithUsers(nameOfFileWithUsers){
         users=fileWithUsers.loadUsersFromFile();
         idLoggedUser=0;
     };

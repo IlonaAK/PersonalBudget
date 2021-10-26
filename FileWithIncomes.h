@@ -4,24 +4,24 @@
 #include <iostream>
 #include "File.h"
 #include <vector>
-#include "Balance.h"
+#include "Incomes.h"
+#include "Markup.h"
+#include "AuxiliaryMethods.h"
 
 using namespace std;
 
 class FileWithIncomes: public File
 {
     const string NAME_FILE_WITH_INCOMES;
-    getDataIncome(string incomeData);
     int idOfLastIncome;
 
 public:
-
-    FileWithIncomes(string nameFileWithIncomes): NAME_FILE_WITH_INCOMES(nameFileWithIncomes){
-    idOfLastIncome=0;
+    FileWithIncomes(string nameFileWithIncomes): NAME_FILE_WITH_INCOMES(nameFileWithIncomes)
+    {
+        idOfLastIncome=0;
     };
 
-    void addIncomeToFile(Balance balance);
-    vector <Balance> loadIncomesFromFile ();
-    void saveAllIncomesToFile(vector <Balance> &incomes);
+    void addIncomeToFile(Incomes incomes);
+    vector <Incomes> loadIncomesFromFile (int idLoggedUser);
 };
 #endif
