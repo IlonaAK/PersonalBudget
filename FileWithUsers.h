@@ -22,6 +22,6 @@ public:
     FileWithUsers (string nameFileWithUsers): NAME_FILE_WITH_USERS(nameFileWithUsers) {};
     void addUserToFile(User users);
     vector <User> loadUsersFromFile();
-    void saveAllUsersToFile(vector <User> &users);
+    void saveAllUsersToFile(vector<User> &users);
 };
 #endif

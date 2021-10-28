@@ -10,9 +10,6 @@ using namespace std;
 class File
 {
 public:
-    string nameOfTemporaryFile;
-    void removeFile(string nameFileWithSuffix);
-    void changeNameOfFile(string oldName, string newName);
     File() {};
 };
 #endif
