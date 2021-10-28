@@ -91,9 +91,9 @@ void UserManager::signupUser()
 {
     User user;
     string login = "", password = "";
-  bool ifPasswordIsCorrect=false;
-  bool ifLoginExist=false;
-  bool ifLimitIsReached=false;
+    bool ifPasswordIsCorrect=false;
+    bool ifLoginExist=false;
+    bool ifLimitIsReached=false;
     idLoggedUser=0;
 
     cout << "Podaj login: ";

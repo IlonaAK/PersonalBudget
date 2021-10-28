@@ -1,7 +1,7 @@
 #include "Calendar.h"
 
 
-int Calendar::loadSystemData ()
+string Calendar::loadSystemData()
 {
     string y, d, m;
     SYSTEMTIME st;
@@ -16,10 +16,11 @@ int Calendar::loadSystemData ()
     else
         d=AuxiliaryMethods::convertIntToString(st.wDay);
 
-    string date=y+m+d;
+    string date=y+"-"+m+"-"+d;
 
-    return AuxiliaryMethods::convertStringToInt(date);
+    return date;
 }
+
 bool Calendar::isLeap(int year)
 {
     if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
@@ -151,6 +152,11 @@ int Calendar::convertDateToInt(string date)
     return AuxiliaryMethods::convertStringToInt(date);
 }
 
+string Calendar::convertDateToString (int date)
+{
+    return AuxiliaryMethods::convertIntToString(date).insert(4, "-").insert(7,"-");
+}
+
 bool Calendar::checkIfDateIsValid(string date)
 {
     int year = yearFromString(date);
@@ -186,3 +192,13 @@ bool Calendar::checkIfDateIsValid(string date)
     else
         return false;
 }
+
+string Calendar::previousMonth()
+{
+    if(monthFromString(loadSystemData())-1>=10)
+        return AuxiliaryMethods::convertIntToString(monthFromString(loadSystemData())-1);
+    else
+        return "0"+ AuxiliaryMethods::convertIntToString(monthFromString(loadSystemData())-1);
+}
+
+

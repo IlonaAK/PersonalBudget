@@ -20,7 +20,7 @@ void BalanceManager::addExpense()
     {
     case ('1'):
     {
-        expense.setDate(calendar.loadSystemData());
+        expense.setDate(calendar.convertDateToInt(calendar.loadSystemData()));
         cout<<"Wydatek zostanie wprowadzony z dzisiejsz\245 dat\245 "<< calendar.loadSystemData()<<endl;
         break;
     }
@@ -76,7 +76,7 @@ void BalanceManager::addIncome()
     {
     case ('1'):
     {
-        income.setDate(calendar.loadSystemData());
+        income.setDate(calendar.convertDateToInt(calendar.loadSystemData()));
         cout<<"Przych\242d zostanie wprowadzony z dzisiejsz\245 dat\245 "<< calendar.loadSystemData()<<endl;
         break;
     }
@@ -127,16 +127,143 @@ int BalanceManager::getNewExpenseId()
         return expenses.back().getAmountId() + 1;
 }
 
-void BalanceManager::balanceCurrentMoth()
+void BalanceManager::balanceCurrentMonth()
 {
+    Calendar calendar;
+    string dateFirst, dateLast;
+    dateFirst=calendar.loadSystemData().replace(8,2, "01");
+    dateLast=calendar.loadSystemData().replace(8,2,AuxiliaryMethods::convertIntToString(calendar.daysInMonth(calendar.yearFromString(calendar.loadSystemData()),calendar.monthFromString(calendar.loadSystemData()))));
+
+    cout<<"Bilans przychod\242w i wydatk\242w z aktualnego miesi\245ca"<<endl;
+    cout<<"Od "<<dateFirst<<" do "<<dateLast<<endl<<endl;
+
+    float sumOfExpenses=0, sumOfIncomes=0;
+
+    for (int i=0; i<incomes.size(); i++)
+    {
+        sort(incomes.begin(), incomes.end(), [](const Balance& a, const Balance&b)
+        {
+            return a.date<b.date;
+        });
+
+        if(calendar.convertDateToInt(dateFirst)<=incomes[i].getDate()&&incomes[i].getDate()<=calendar.convertDateToInt(dateLast))
+        {
+            cout<<"Data przychodu: "<<calendar.convertDateToString(incomes[i].getDate())<<"  \215r\242d\210o: "<<incomes[i].getItem()<<" Kwota: "<<incomes[i].getAmount()<<endl;
+
+            sumOfIncomes+=AuxiliaryMethods::convertStringToFloat(incomes[i].getAmount());
+        }
+    }
+    for (int i=0; i<expenses.size(); i++)
+    {
+        sort(expenses.begin(), expenses.end(), [](const Balance& a, const Balance&b)
+        {
+            return a.date<b.date;
+        });
+
+        if(calendar.convertDateToInt(dateFirst)<=expenses[i].getDate()&&expenses[i].getDate()<=calendar.convertDateToInt(dateLast))
+        {
+
+            cout<<"Data wydatku: "<<calendar.convertDateToString(expenses[i].getDate())<<"  Przyczyna: "<<expenses[i].getItem()<<" Kwota: "<<expenses[i].getAmount()<<endl;
+
+            sumOfExpenses+=AuxiliaryMethods::convertStringToFloat(expenses[i].getAmount());
+        }
+    }
+    cout<<endl<<"Suma przychod\242w: "<<sumOfIncomes<<endl<<endl;
+    cout<<"Suma wydatk\242w: "<<sumOfExpenses<<endl<<endl;
+    cout<<"Ko\344cowe saldo: "<<sumOfIncomes-sumOfExpenses<<endl<<endl;
+
+    system("pause");
 
 }
 
 void BalanceManager::balancePreviousMonth()
 {
+    Calendar calendar;
+    string dateFirst, dateLast;
+    dateFirst=calendar.loadSystemData().replace(5,2,calendar.previousMonth()).replace(8,2,"01");
+    dateLast=calendar.loadSystemData().replace(5,2,calendar.previousMonth()).replace(8,2,AuxiliaryMethods::convertIntToString(calendar.daysInMonth(calendar.yearFromString(calendar.loadSystemData()),AuxiliaryMethods::convertStringToInt(calendar.previousMonth()))));
+    cout<<"Bilans przychod\242w i wydatk\242w z poprzedniego miesi\245ca"<<endl;
+
+    cout<<"Od "<<dateFirst<<" do "<<dateLast<<endl<<endl;
+
+    float sumOfExpenses=0, sumOfIncomes=0;
+
+    for (int i=0; i<incomes.size(); i++)
+    {
+        sort(incomes.begin(), incomes.end(), [](const Balance& a, const Balance&b)
+        {
+            return a.date<b.date;
+        });
+        if(calendar.convertDateToInt(dateFirst)<=incomes[i].getDate()&&incomes[i].getDate()<=calendar.convertDateToInt(dateLast))
+        {
+            cout<<"Data przychodu: "<<calendar.convertDateToString(incomes[i].getDate())<<"  \215r\242d\210o: "<<incomes[i].getItem()<<" Kwota: "<<incomes[i].getAmount()<<endl;
+            sumOfIncomes+=AuxiliaryMethods::convertStringToFloat(incomes[i].getAmount());
+        }
+    }
+    for (int i=0; i<expenses.size(); i++)
+    {
+        sort(expenses.begin(), expenses.end(), [](const Balance& a, const Balance&b)
+        {
+            return a.date<b.date;
+        });
+        if(calendar.convertDateToInt(dateFirst)<=expenses[i].getDate()&&expenses[i].getDate()<=calendar.convertDateToInt(dateLast))
+        {
+            cout<<"Data wydatku: "<<calendar.convertDateToString(expenses[i].getDate())<<"  Przyczyna: "<<expenses[i].getItem()<<" Kwota: "<<expenses[i].getAmount()<<endl;
+            sumOfExpenses+=AuxiliaryMethods::convertStringToFloat(expenses[i].getAmount());
+        }
+
+    }
+    cout<<endl<<"Suma przychod\242w: "<<sumOfIncomes<<endl<<endl;
+    cout<<"Suma wydatk\242w: "<<sumOfExpenses<<endl<<endl;
+    cout<<"Ko\344cowe saldo: "<<sumOfIncomes-sumOfExpenses<<endl<<endl;
+
+    system("pause");
 
 }
-void BalanceManager::balanceSelectedMonth()
+void BalanceManager::balanceSelectedPeriod()
 {
+    Calendar calendar;
+    string dateFirst, dateLast;
+    cout<<"Podaj z jakiego okresu chcesz zobaczy\206 bilans przychod\242w i wydatk\242w."<<endl;
+    cout<<"Podaj dat\251 rozpoczynaj\245c\245 wybrany okres (RRRR-MM-DD): "<<endl;
+    cin>> dateFirst;
+    cout<<"Podaj dat\251 ko\344cz\245c\245 wybrany okres (RRRR-MM-DD): "<<endl;
+    cin>> dateLast;
+    cout<<"Bilans przychod\242w i wydatk\242w z wybranego okresu"<<endl;
 
+    cout<<"Od "<<dateFirst<<" do "<<dateLast<<endl<<endl;
+
+    float sumOfExpenses=0, sumOfIncomes=0;
+
+    for (int i=0; i<incomes.size(); i++)
+    {
+        sort(incomes.begin(), incomes.end(), [](const Balance& a, const Balance&b)
+        {
+            return a.date<b.date;
+        });
+
+        if(calendar.convertDateToInt(dateFirst)<=incomes[i].getDate()&&incomes[i].getDate()<=calendar.convertDateToInt(dateLast))
+        {
+            cout<<"Data przychodu: "<<calendar.convertDateToString(incomes[i].getDate())<<"  \215r\242d\210o: "<<incomes[i].getItem()<<" Kwota: "<<incomes[i].getAmount()<<endl;
+            sumOfIncomes+=AuxiliaryMethods::convertStringToFloat(incomes[i].getAmount());
+        }
+    }
+    for (int i=0; i<expenses.size(); i++)
+    {
+        sort(expenses.begin(), expenses.end(), [](const Balance& a, const Balance&b)
+        {
+            return a.date<b.date;
+        });
+        if(calendar.convertDateToInt(dateFirst)<=expenses[i].getDate()&&expenses[i].getDate()<=calendar.convertDateToInt(dateLast))
+        {
+            cout<<"Data wydatku: "<<calendar.convertDateToString(expenses[i].getDate())<<"  Przyczyna: "<<expenses[i].getItem()<<" Kwota: "<<expenses[i].getAmount()<<endl;
+            sumOfExpenses+=AuxiliaryMethods::convertStringToFloat(expenses[i].getAmount());
+        }
+    }
+    cout<<endl<<"Suma przychod\242w: "<<sumOfIncomes<<endl<<endl;
+    cout<<"Suma wydatk\242w: "<<sumOfExpenses<<endl<<endl;
+    cout<<"Ko\344cowe saldo: "<<sumOfIncomes-sumOfExpenses<<endl<<endl;
+
+    system("pause");
 }
+

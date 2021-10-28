@@ -20,6 +20,7 @@ public:
     static string convertFirstLetterToCapitalAndOtherToLowercase(string text);
     static char loadSign();
     static string loadLine();
+
 };
 #endif
 

@@ -10,7 +10,7 @@ class Expenses : public Balance
 {
 
 public:
-    Expenses(){};
+    Expenses() {};
 };
 
 #endif

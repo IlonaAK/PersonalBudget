@@ -2,7 +2,7 @@
 
 void FileWithIncomes::addIncomeToFile(Incomes incomes)
 {
-  CMarkup xml;
+    CMarkup xml;
 
     bool fileExists = xml.Load( "incomes.xml" );
 
@@ -42,19 +42,21 @@ vector <Incomes> FileWithIncomes::loadIncomesFromFile (int idLoggedUser)
     {
         xml.IntoElem();
         xml.FindElem("UserId");
-        incomes.setUserId(idLoggedUser);
-        xml.FindElem("AmountId");
-        incomes.setAmountId(AuxiliaryMethods::convertStringToInt(xml.GetData()));
-        xml.FindElem("Date");
-        incomes.setDate(AuxiliaryMethods::convertStringToInt(xml.GetData()));
-        xml.FindElem("Item");
-        incomes.setItem(xml.GetData());
-        xml.FindElem("Amount");
-        incomes.setAmount(xml.GetData());
-
+        while(AuxiliaryMethods::convertStringToInt(xml.GetData())==idLoggedUser)
+        {
+            incomes.setUserId(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+            xml.FindElem("AmountId");
+            incomes.setAmountId(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+            xml.FindElem("Date");
+            incomes.setDate(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+            xml.FindElem("Item");
+            incomes.setItem(xml.GetData());
+            xml.FindElem("Amount");
+            incomes.setAmount(xml.GetData());
+            income.push_back(incomes);
+        }
         xml.ResetMainPos();
         xml.OutOfElem();
-        income.push_back(incomes);
     }
     return income;
 }

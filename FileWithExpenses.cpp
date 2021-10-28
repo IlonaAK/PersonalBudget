@@ -2,7 +2,7 @@
 
 void FileWithExpenses::addExpenseToFile(Expenses expenses)
 {
-  CMarkup xml;
+    CMarkup xml;
 
     bool fileExists = xml.Load( "expenses.xml" );
 
@@ -41,19 +41,21 @@ vector <Expenses> FileWithExpenses::loadExpensesFromFile (int idLoggedUser)
     {
         xml.IntoElem();
         xml.FindElem("UserId");
-        expenses.setUserId(idLoggedUser);
-        xml.FindElem("AmountId");
-        expenses.setAmountId(AuxiliaryMethods::convertStringToInt(xml.GetData()));
-        xml.FindElem("Date");
-        expenses.setDate(AuxiliaryMethods::convertStringToInt(xml.GetData()));
-        xml.FindElem("Item");
-        expenses.setItem(xml.GetData());
-        xml.FindElem("Amount");
-        expenses.setAmount(xml.GetData());
-
+        while(AuxiliaryMethods::convertStringToInt(xml.GetData())==idLoggedUser)
+        {
+            expenses.setUserId(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+            xml.FindElem("AmountId");
+            expenses.setAmountId(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+            xml.FindElem("Date");
+            expenses.setDate(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+            xml.FindElem("Item");
+            expenses.setItem(xml.GetData());
+            xml.FindElem("Amount");
+            expenses.setAmount(xml.GetData());
+            expense.push_back(expenses);
+        }
         xml.ResetMainPos();
         xml.OutOfElem();
-        expense.push_back(expenses);
     }
     return expense;
 }

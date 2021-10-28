@@ -2,12 +2,12 @@
 
 string AuxiliaryMethods::changeCommaToDot(string amount)
 {
-     for (int i=0; i<=amount.length()-1;++i)
-   {
-       if (amount[i]==',')
-        amount [i]='.';
-   }
-   return amount;
+    for (int i=0; i<=amount.length()-1; ++i)
+    {
+        if (amount[i]==',')
+            amount [i]='.';
+    }
+    return amount;
 }
 
 string AuxiliaryMethods::convertIntToString(int integer)
@@ -20,15 +20,15 @@ string AuxiliaryMethods::convertIntToString(int integer)
 
 int AuxiliaryMethods::convertStringToInt(string word)
 {
-   int integer=atoi(word.c_str());
+    int integer=atoi(word.c_str());
     return integer;
 }
 
 float AuxiliaryMethods::convertStringToFloat (string amount)
 {
-float fractionalNumber=atof(amount.c_str());
+    float fractionalNumber=atof(amount.c_str());
 
-return fractionalNumber;
+    return fractionalNumber;
 }
 
 string AuxiliaryMethods::convertFirstLetterToCapitalAndOtherToLowercase(string text)
@@ -68,3 +68,6 @@ string AuxiliaryMethods::loadLine()
     getline(cin, enter);
     return enter;
 }
+
+
+

@@ -17,7 +17,8 @@ class Calendar
     string date;
 public:
 
-    int loadSystemData();
+
+    string loadSystemData();
     int daysInMonth(int year, int month);
     bool isLeap(int year);
     int yearFromString(string date);
@@ -26,7 +27,9 @@ public:
     int getDays(string date);
     int daysBetweenDates(string firstDate, string endDate);
     int convertDateToInt(string date);
+    string convertDateToString (int date);
     bool checkIfDateIsValid(string date);
+    string previousMonth();
 
 };
 #endif

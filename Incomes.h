@@ -10,7 +10,7 @@ class Incomes: public Balance
 {
 
 public:
-    Incomes(){};
+    Incomes() {};
 };
 
 #endif

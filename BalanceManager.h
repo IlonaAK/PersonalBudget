@@ -5,6 +5,7 @@
 #include "AuxiliaryMethods.h"
 #include "Calendar.h"
 #include <vector>
+#include <algorithm>
 #include <windows.h>
 #include <sstream>
 #include "Incomes.h"
@@ -36,9 +37,9 @@ public:
     };
     void addIncome();
     void addExpense();
-    void balanceCurrentMoth();
+    void balanceCurrentMonth();
     void balancePreviousMonth();
-    void balanceSelectedMonth();
+    void balanceSelectedPeriod();
 
 };
 #endif

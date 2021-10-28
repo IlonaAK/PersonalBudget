@@ -11,7 +11,7 @@ class Balance
 {
     int userId;
     int amountId;
-    int date;
+    // int date;
     string item;
     string amount;
 
@@ -29,7 +29,7 @@ public:
     void setDate (int date);
     void setItem (string item);
     void setAmount (string amount);
-
+    int date;
     int getUserId();
     int getAmountId();
     int getDate();

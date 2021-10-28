@@ -15,13 +15,13 @@ using namespace std;
 
 class FileWithUsers: public File
 {
-const string NAME_FILE_WITH_USERS;
+    const string NAME_FILE_WITH_USERS;
 
 public:
 
-     FileWithUsers (string nameFileWithUsers): NAME_FILE_WITH_USERS(nameFileWithUsers){};
-     void addUserToFile(User users);
-     vector <User> loadUsersFromFile();
-     void saveAllUsersToFile(vector <User> &users);
+    FileWithUsers (string nameFileWithUsers): NAME_FILE_WITH_USERS(nameFileWithUsers) {};
+    void addUserToFile(User users);
+    vector <User> loadUsersFromFile();
+    void saveAllUsersToFile(vector <User> &users);
 };
 #endif

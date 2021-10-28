@@ -3,7 +3,7 @@
 void User::setId (int newId)
 {
     if(newId >= 0)
-    id=newId;
+        id=newId;
 }
 
 void User::setName (string newName)

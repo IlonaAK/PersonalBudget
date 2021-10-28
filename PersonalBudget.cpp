@@ -67,7 +67,7 @@ void PersonalBudget::viewUserMenu()
     cout << "2. Dodaj wydatek"<<endl;
     cout << "3. Bilans z bie\276\245cego miesi\245ca"<<endl;
     cout << "4. Bilans z poprzedniego miesi\245ca"<<endl;
-    cout << "5. Bilans z wybranego miesi\245ca"<<endl;
+    cout << "5. Bilans z wybranego okresu"<<endl;
     cout << "6. Zmie\344 has\210o" <<endl;
     cout << "8. Wyloguj si\251" <<endl;
     cout << "Tw\242j wyb\242r: ";
@@ -96,18 +96,18 @@ void PersonalBudget::userMenu()
         }
         case ('3'):
         {
-//            balanceManager->balanceCurrentMonth();
+            balanceManager->balanceCurrentMonth();
             break;
         }
         case ('4'):
         {
-            //  balanceManager->balancePreviousMonth();
+            balanceManager->balancePreviousMonth();
             system("pause");
             break;
         }
         case ('5'):
         {
-            //  balanceManager->balanceSelectedMonth();
+            balanceManager->balanceSelectedPeriod();
             system("pause");
             break;
         }

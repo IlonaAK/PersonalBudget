@@ -3,12 +3,12 @@
 void Balance::setUserId (int newUserId)
 {
     if(newUserId >= 0)
-    userId=newUserId;
+        userId=newUserId;
 }
 void Balance::setAmountId (int newAmountId)
 {
     if(newAmountId >= 0)
-    amountId=newAmountId;
+        amountId=newAmountId;
 }
 
 void Balance::setDate (int newDate)
