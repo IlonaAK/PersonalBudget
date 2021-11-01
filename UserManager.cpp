@@ -44,10 +44,7 @@ User UserManager::giveDataOfNewUser()
 
 int UserManager::getIdOfNewUser()
 {
-    if (users.empty() == true)
-        return 1;
-    else
-        return users.back().getId() + 1;
+    return (users.empty() == true) ? 1: users.back().getId() + 1;
 }
 bool UserManager::ifLoginExist(string login)
 {

@@ -16,18 +16,12 @@ string Calendar::loadSystemData()
     else
         d=AuxiliaryMethods::convertIntToString(st.wDay);
 
-    string date=y+"-"+m+"-"+d;
-
-    return date;
+    return y+"-"+m+"-"+d;
 }
 
 bool Calendar::isLeap(int year)
 {
-    if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
-        return true;
-    else
-        return false;
-
+    return (year % 4 == 0 && year % 100 != 0 || year % 400 == 0);
 }
 
 int Calendar::daysInMonth (int year, int month)
@@ -63,28 +57,22 @@ int Calendar::daysInMonth (int year, int month)
 }
 int Calendar::yearFromString (string date)
 {
-    int year;
-    return year=AuxiliaryMethods::convertStringToInt(date.substr(0,4));
+    return AuxiliaryMethods::convertStringToInt(date.substr(0,4));
 }
 int Calendar::monthFromString (string date)
 {
-    int month;
-    return month=AuxiliaryMethods::convertStringToInt(date.substr(5,2));
+    return AuxiliaryMethods::convertStringToInt(date.substr(5,2));
 }
 
 int Calendar::dayFromString (string date)
 {
-    int day;
-    return day=AuxiliaryMethods::convertStringToInt(date.substr(8,2));
+    return AuxiliaryMethods::convertStringToInt(date.substr(8,2));
 }
 
 int Calendar::getDays(string date)
 {
-    int year = yearFromString(date);
-    int month =monthFromString(date);
-    int day = dayFromString(date);
     int ans = 0;
-    for (int i = 2000; i < year; ++ i)
+    for (int i = 2000; i < yearFromString(date); ++ i)
     {
         if (isLeap(i))
         {
@@ -95,7 +83,7 @@ int Calendar::getDays(string date)
             ans += 365;
         }
     }
-    for (int i = 1; i < month; ++ i)
+    for (int i = 1; i < monthFromString(date); ++ i)
     {
         switch(i)
         {
@@ -103,7 +91,7 @@ int Calendar::getDays(string date)
             ans += 31;
             break;
         case 2:
-            ans += isLeap(year) ? 29 : 28;
+            ans += isLeap(yearFromString(date)) ? 29 : 28;
             break;
         case 3:
             ans += 31;
@@ -137,7 +125,7 @@ int Calendar::getDays(string date)
             break;
         }
     }
-    return ans += day - 1;
+    return ans += dayFromString(date) - 1;
 }
 int Calendar::daysBetweenDates(string firstDate, string endDate)
 {
@@ -183,22 +171,17 @@ bool Calendar::checkIfDateIsValid(string date)
             {
                 return true;
             }
-            else
-                return false;
-        }
-        else
             return false;
-    }
-    else
+        }
         return false;
+    }
+    return false;
 }
 
 string Calendar::previousMonth()
 {
-    if(monthFromString(loadSystemData())-1>=10)
-        return AuxiliaryMethods::convertIntToString(monthFromString(loadSystemData())-1);
-    else
-        return "0"+ AuxiliaryMethods::convertIntToString(monthFromString(loadSystemData())-1);
+    return (monthFromString(loadSystemData())-1>=10) ? AuxiliaryMethods::convertIntToString(monthFromString(loadSystemData())-1):
+           "0"+ AuxiliaryMethods::convertIntToString(monthFromString(loadSystemData())-1);
 }
 
 

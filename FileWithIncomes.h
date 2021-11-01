@@ -23,5 +23,6 @@ public:
 
     void addIncomeToFile(Incomes incomes);
     vector <Incomes> loadIncomesFromFile (int idLoggedUser);
+    vector <Incomes> loadAllIncomesFromFile();
 };
 #endif

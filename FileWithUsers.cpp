@@ -66,20 +66,20 @@ void FileWithUsers::saveAllUsersToFile(vector<User> &users)
     xml.ResetChildPos();
     while ( xml.FindChildElem() )
     {
-    xml.RemoveChildElem();
+        xml.RemoveChildElem();
     }
     xml.IntoElem();
-    for (int i=0; i<users.size();i++)
+    for (int i=0; i<users.size(); i++)
     {
-    xml.AddElem("User");
-    xml.IntoElem();
-    xml.AddElem("UserId",users[i].getId());
-    xml.AddElem("Login", users[i].getLogin());
-    xml.AddElem("Name", users[i].getName());
-    xml.AddElem ("Surname", users[i].getSurname());
-    xml.AddElem("Password", users[i].getPassword());
-    xml.ResetMainPos();
-    xml.OutOfElem();
+        xml.AddElem("User");
+        xml.IntoElem();
+        xml.AddElem("UserId",users[i].getId());
+        xml.AddElem("Login", users[i].getLogin());
+        xml.AddElem("Name", users[i].getName());
+        xml.AddElem ("Surname", users[i].getSurname());
+        xml.AddElem("Password", users[i].getPassword());
+        xml.ResetMainPos();
+        xml.OutOfElem();
     }
     xml.Save("users.xml");
 }

@@ -7,4 +7,11 @@
 <Surname>L</Surname>
 <Password>2222</Password>
 </User>
+<User>
+<UserId>2</UserId>
+<Login>Danio</Login>
+<Name>Damian</Name>
+<Surname>R</Surname>
+<Password>123</Password>
+</User>
 </Users>

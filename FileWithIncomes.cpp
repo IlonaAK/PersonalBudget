@@ -60,3 +60,32 @@ vector <Incomes> FileWithIncomes::loadIncomesFromFile (int idLoggedUser)
     }
     return income;
 }
+
+vector <Incomes> FileWithIncomes::loadAllIncomesFromFile ()
+{
+    Incomes incomes;
+    vector <Incomes> allIncomes;
+    CMarkup xml;
+
+    xml.Load("incomes.xml");
+    xml.FindElem("Incomes");
+    xml.IntoElem();
+    while(xml.FindElem("Income"))
+    {
+        xml.IntoElem();
+        xml.FindElem("UserId");
+        incomes.setUserId(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+        xml.FindElem("AmountId");
+        incomes.setAmountId(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+        xml.FindElem("Date");
+        incomes.setDate(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+        xml.FindElem("Item");
+        incomes.setItem(xml.GetData());
+        xml.FindElem("Amount");
+        incomes.setAmount(xml.GetData());
+        allIncomes.push_back(incomes);
+        xml.ResetMainPos();
+        xml.OutOfElem();
+    }
+    return allIncomes;
+}

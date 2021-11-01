@@ -60,4 +60,34 @@ vector <Expenses> FileWithExpenses::loadExpensesFromFile (int idLoggedUser)
     return expense;
 }
 
+vector <Expenses> FileWithExpenses::loadAllExpensesFromFile()
+{
+    Expenses expenses;
+    vector <Expenses> allExpenses;
+    CMarkup xml;
+
+    xml.Load("expenses.xml");
+    xml.FindElem("Expenses");
+    xml.IntoElem();
+    while(xml.FindElem("Expense"))
+    {
+        xml.IntoElem();
+        xml.FindElem("UserId");
+        expenses.setUserId(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+
+        xml.FindElem("AmountId");
+        expenses.setAmountId(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+        xml.FindElem("Date");
+        expenses.setDate(AuxiliaryMethods::convertStringToInt(xml.GetData()));
+        xml.FindElem("Item");
+        expenses.setItem(xml.GetData());
+        xml.FindElem("Amount");
+        expenses.setAmount(xml.GetData());
+        allExpenses.push_back(expenses);
+        xml.ResetMainPos();
+        xml.OutOfElem();
+    }
+    return allExpenses;
+}
+
 

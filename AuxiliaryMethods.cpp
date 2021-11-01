@@ -14,21 +14,17 @@ string AuxiliaryMethods::convertIntToString(int integer)
 {
     ostringstream ss;
     ss << integer;
-    string str = ss.str();
-    return str;
+    return ss.str();
 }
 
 int AuxiliaryMethods::convertStringToInt(string word)
 {
-    int integer=atoi(word.c_str());
-    return integer;
+    return atoi(word.c_str());;
 }
 
 float AuxiliaryMethods::convertStringToFloat (string amount)
 {
-    float fractionalNumber=atof(amount.c_str());
-
-    return fractionalNumber;
+    return atof(amount.c_str());;
 }
 
 string AuxiliaryMethods::convertFirstLetterToCapitalAndOtherToLowercase(string text)
